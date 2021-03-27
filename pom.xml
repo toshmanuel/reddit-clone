@@ -72,10 +72,17 @@
             <version>2.0.1.Final</version>
         </dependency>
         <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-        <version>8.0.11</version>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.11</version>
         </dependency>
+        <dependency>
+            <groupId>com.liferay.portal</groupId>
+            <artifactId>portal-service</artifactId>
+            <version>6.2.0-B2</version>
+        </dependency>
+        <!-- Thanks for using https://jar-download.com -->
+
     </dependencies>
 
     <build>

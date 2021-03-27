@@ -1,13 +1,16 @@
 package com.reddit.reddit.service;
 
 
+import com.liferay.mail.service.MailService;
 import com.reddit.reddit.dto.RegisterRequest;
+import com.reddit.reddit.models.NotificationEmail;
 import com.reddit.reddit.models.User;
 import com.reddit.reddit.models.VerificationToken;
 import com.reddit.reddit.repositories.UserRepository;
 import com.reddit.reddit.repositories.VerificationTokenRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,7 +27,10 @@ public class AuthServiceImpl implements AuthService {
 
     private final VerificationTokenRepository verificationTokenRepository;
 
+    public final MailService mailService;
+
     @Override
+    @Transactional
     public void signup(RegisterRequest registerRequest){
         User newUser = new User();
 
@@ -37,6 +43,10 @@ public class AuthServiceImpl implements AuthService {
         userRepository.save(newUser);
 
         String token = generateVerificationToken(newUser);
+
+        mailService.sendEmail(new NotificationEmail("Please activate your account",
+                newUser.getEmail(), "Thank you for signing up, kindly follow the link bellow" +
+                "http://localhost:8080/api/auth/accountVerification" + token));
 
     }
 
