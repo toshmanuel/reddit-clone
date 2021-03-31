@@ -40,5 +40,22 @@ public class Post {
     private Subreddit subreddit;
 
 
+    public static void main(String[] args) {
+        int[] numbers = new int[10];
+        int counter = 1;
+        for (int number : numbers ){
+            number = counter;
+            counter++;
+        }
+
+        for (int number : numbers ){
+            System.out.println(number);
+        }
+
+    }
+
+
+
+
 
 }

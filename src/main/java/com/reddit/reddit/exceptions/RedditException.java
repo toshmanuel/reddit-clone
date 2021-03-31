@@ -1,6 +1,6 @@
 package com.reddit.reddit.exceptions;
 
-public class RedditException extends Exception{
+public class RedditException extends RuntimeException{
     public RedditException() {
     }
 
